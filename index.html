@@ -609,44 +609,9 @@
             <button class="massive fluid ui teal button" id="find">영웅 찾기</button>
         </div>
     </div>
-    <!-- modal -->
-    <div class="ui fullscreen modal">
-        <div class="header">영웅 두 명이 당신을 기다리고 있습니다!</div>
-        <div class="content">
-            <p>이런! 결과를 보니 영웅 두 명이 당신과 비슷하다고 주장하네요.</p>
-            <p>아래 최후의 질문으로 두 명 중 당신과 더 맞는 영웅을 찾아보세요.</p>
-            <div class="ui hidden divider"></div>
-            <div class="ui hidden divider"></div>
-
-            <h1>마지막 질문: </h1>
-            <h2>악법도 법이다.</h2>
-        </div>
-        <div class="actions">
-            <div class="ui approve big positive button">맞다.</div>
-            <div class="ui deny big negative button">아니다.</div>
-          </div>
-    </div>
-    <div class="footer"></div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('.fullscreen.modal')
-    .modal({
-    closable  : false,
-    blurring: true,
-    onDeny    : function(){
-      window.alert('Wait not yet!');
-      return false;
-    },
-    onApprove : function() {
-      window.alert('Approved!');
-    }
-  })
-    // .modal('show');
-});
-</script>
 <script>
     $('#find').on('click', function () {
         // var q1 = $("input[name='1']:checked").val();
