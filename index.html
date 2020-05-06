@@ -613,13 +613,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
 
-<script>
-    // 글자만 클릭해도 라디오 체크 되게!!!
-    $('.label').on('click', function (){
-        $(this).prev().prop("checked", true);
-    })
-    
-    $('#find').on('click', function () {
+ $('#find').on('click', function () {
         // var q1 = $("input[name='1']:checked").val();
         var q2 = $("input[name='2']:checked").val();
         var q3 = $("input[name='3']:checked").val();
@@ -640,7 +634,7 @@
         var resultNumArr = [questionOnetToSix, questionSevenToTwelve];
 
         //결과를 배열에 담아서 for문으로 뭐랑 일치하는지 확인.... 옵치 배열은 미리 저장해둔다.
-        
+
         console.log('결과 : ' + resultNumArr);
         console.log('총 배점 : ');
         console.log('내향 및 외향 점수 : ' + q2 + '/' + q3 + '/' + q4 + '/' + q5 + '/' + q6);
@@ -652,67 +646,6 @@
 
     });
 
-    function findHero(resultNumArr) {
-        const WIDOWMAKER = ['WIDOWMAKER', 20, 0];
-        const ROADHOG = ['ROADHOG', 20, 4];
-        const REAPER = ['REAPER', 19, 1];
-        const SIGMA = ['SIGMA', 18, 2];
-        const MOIRA = ['MOIRA', 17, 0];
-        const SYMMETRA = ['SYMMETRA', 16, 0];
-        const HANZO = ['HANZO', 16, 2];
-        const ZENYATTA = ['ZENYATTA', 15, 20];
-        const BASTION = ['BASTION', 14, 10];
-        const DOOMFIST = ['DOOMFIST', 13, 0];
-        const SOLDIER76 = ['SOLDIER76', 12, 2];
-        const MCREE = ['MCREE', 12, 12];
-        const SOMBRA = ['SOMBRA', 12, 4];
-        const ZARYA = ['ZARYA', 11, 6];
-        const MEI = ['MEI', 10, 20];
-        const WREKINGBALL = ['WREKINGBALL', 10, 4];
-        const PHARAH = ['PHARAH', 10, 2];
-        const TORBJORN = ['TORBJORN', 9, 2];
-        const ASH = ['ASH', 9, 14];
-        const ANA = ['ANA', 8, 6];
-        const GENJI = ['GENJI', 8, 16];
-        const MERCY = ['MERCY', 7, 8];
-        const JUNKRAT = ['JUNKRAT', 6, 16];
-        const WINSTON = ['WINSTON', 6, 14];
-        const ECHO = ['ECHO', 5, 8];
-        const ORISA = ['ORISA', 5, 6];
-        const BRIGITTE = ['BRIGITTE', 4, 18];
-        const BAPTISTE = ['BAPTISTE', 3, 14];
-        const DVA = ['DVA', 2, 8];
-        const REINHARDT = ['REINHARDT', 1, 18];
-        const TRACER = ['TRACER', 0, 16];
-        const LUCIO = ['LUCIO', 0, 20]; 
-
-        const HEROS = [];
-        HEROS.push(WIDOWMAKER,  ROADHOG, REAPER, SIGMA,  MOIRA, SYMMETRA,HANZO, ZENYATTA, BASTION, DOOMFIST, SOLDIER76, MCREE,
-            SOMBRA, ZARYA,  MEI,  WREKINGBALL, PHARAH,  TORBJORN, ASH, ANA,   GENJI, 
-            MERCY, JUNKRAT, WINSTON, ECHO, ORISA, BRIGITTE, BAPTISTE,   DVA, REINHARDT, TRACER, LUCIO);
-
-        for (i in HEROS) {
-            console.log("i: " + i + "; value: " + HEROS[i]);
-        }
-
-        for (i in HEROS) {
-            if (resultNumArr[0] === HEROS[i][1]) { // 첫째자리가 맞을 떄
-                
-                if (resultNumArr[1] === HEROS[i][2]) { //둘째자리까지 맞으면 영웅을 return
-                    return HEROS[i][0];
-                }
-
-                if (resultNumArr[0] >= 15) {//만약 첫째자리가 15 이상이고
-                    if (resultNumArr[1] >= 10) { //둘째자리가 10과 같거나 크면 젠야타.
-                        return ZENYATTA[0];
-                    }
-                } 
-            }else {
-                    //둘째자리가 맞지 않다면 첫째자리가 같은 영웅들의 둘째자리 데이터 중 결과와 근사한 값으로 보내버리기
-                    return findNearHero(resultNumArr, HEROS);
-                }
-        }
-    }
 
     function findNearHero(resultNumArr, HEROS) {
         var firstMatchedHeros = [];
