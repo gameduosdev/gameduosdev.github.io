@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        type="text/css" />
+    <link href='http://www.openhiun.com/hangul/nanumbarungothic.css' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" href="psersonalTest.css" /> -->
+    <title>오버워치 심리테스트 - Beta</title>
+</head>
+<style>
+    .body{
+    margin: 0;
+    padding: 0;
+}
+
+.nav.container{
+    width: 100%;
+    height: 15rem;
+    background-color: #57ae8c;
+}
+
+.header.container{
+    width: 100%;
+    height: 18rem;
+    padding: 3rem;
+}
+
+.header.meta{
+    text-align: center;
+    font-size: small;
+    color: darkgray;
+}
+
+.test.header{
+    margin: 2%;
+}
+
+.modal > .header {
+    text-align: center;
+}
+.modal > .content > p{
+    text-align: center;
+    color: gray;
+}
+
+.modal > .content > h2{
+    text-align: center;
+    color: teal;
+}
+
+.modal > .content > h1{
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .centered.banner{
+        display: none;
+    }
+}
+
+</style>
+<body>
+    <div class="ui main container">
+        <div class="ui nav container"></div>
+        <header>
+            <div class="ui header container">
+                <h2 class="ui center aligned icon header">
+                    <i class="circular users icon"></i>
+                    나와 맞는 오버워치 영웅을 찾아보세요.
+                </h2>
+                <div class="header meta">
+                    <span>총 32명의 오버워치 영웅 중 나와 맞는 영웅은 누구일까요?</span>
+                </div>
+            </div>
+        </header>
+        <div class="ui divider"></div>
+        <div class="ui raised very padded text container segment">
+            <div class="ui items">
+                <!-- <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            1. 갈등은 필요악이다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="1" value="-2" >
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="1" value="-1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="1" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="1" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="1" value="2" checked="checked">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div> -->
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            1. 가벼운 잡담 여러 번 보다는 깊이 있는 논의 한 번이 낫다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="2" value="2" checked="checked">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="2" value="1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="2" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="2" value="-1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="2" value="-2" >
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            2. 쉬는 날은 다른 사람과 같이 보내는 것이 좋다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="3" value="-2">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="3" value="-1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="3" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="3" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="3" value="2" checked="checked">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            3. 팀의 일원으로 일하는 것보다 혼자 일 하는 것이 좋다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="4" value="2" checked="checked">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="4" value="1" >
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="4" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="4" value="-1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="4" value="-2">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            4. 대화를 주도하는 편이다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="-2">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="-1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="0" >
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="2" checked="checked">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            5. 친구와 연락 할 땐 전화가 좋다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6" value="-2">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6" value="-1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6" value="2" checked="checked">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui centered banner test ad"></div>
+                <div class="ui mobile leaderboard test ad" data-text="Mobile Leaderboard"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <!-- <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            7. 악법도 법이다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="7" value="-2">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="7" value="-1" checked="checked">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="7" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="7" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="7" value="2">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div> -->
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            6. 어떠한 상황에도 이야기는 본론만 깔끔하게 말 하는 것이 좋다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="8" value="-2" checked="checked">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="8" value="-1" >
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="8" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="8" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="8" value="2">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            7. 상대방을 위해서라면 분위기가 불편하더라도 상대방의 단점을 이야기해준다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="9" value="-2" checked="checked">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="9" value="-1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="9" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="9" value="1" >
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="9" value="2">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            8. 나의 행동이 남들에게 어떻게 보일지는 중요하지않다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="10" value="-2" checked="checked">
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="10" value="-1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="10" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="10" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="10" value="2" >
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            9. 선의의 거짓말도 결국에는 거짓말일 뿐이다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="11" value="-2" >
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="11" value="-1" >
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="11" value="0"  checked="checked">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="11" value="1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="11" value="2">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header">
+                            10. 때로는 논리보다 가슴이 시키는 일을 한다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="12" value="2" >
+                                    <label>매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="12" value="1">
+                                    <label>그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="12" value="0">
+                                    <label>모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="12" value="-1">
+                                    <label>그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="12" value="-2" checked="checked">
+                                    <label>매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+            </div>
+            <button class="massive fluid ui teal button" id="find">영웅 찾기</button>
+        </div>
+    </div>
+    <!-- modal -->
+    <div class="ui fullscreen modal">
+        <div class="header">영웅 두 명이 당신을 기다리고 있습니다!</div>
+        <div class="content">
+            <p>이런! 결과를 보니 영웅 두 명이 당신과 비슷하다고 주장하네요.</p>
+            <p>아래 최후의 질문으로 두 명 중 당신과 더 맞는 영웅을 찾아보세요.</p>
+            <div class="ui hidden divider"></div>
+            <div class="ui hidden divider"></div>
+
+            <h1>마지막 질문: </h1>
+            <h2>악법도 법이다.</h2>
+        </div>
+        <div class="actions">
+            <div class="ui approve big positive button">맞다.</div>
+            <div class="ui deny big negative button">아니다.</div>
+          </div>
+    </div>
+    <div class="footer"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.fullscreen.modal')
+    .modal({
+    closable  : false,
+    blurring: true,
+    onDeny    : function(){
+      window.alert('Wait not yet!');
+      return false;
+    },
+    onApprove : function() {
+      window.alert('Approved!');
+    }
+  })
+    // .modal('show');
+});
+</script>
+<script>
+    $('#find').on('click', function () {
+        // var q1 = $("input[name='1']:checked").val();
+        var q2 = $("input[name='2']:checked").val();
+        var q3 = $("input[name='3']:checked").val();
+        var q4 = $("input[name='4']:checked").val();
+        var q5 = $("input[name='5']:checked").val();
+        var q6 = $("input[name='6']:checked").val();
+
+        // var q7 = $("input[name='7']:checked").val();
+        var q8 = $("input[name='8']:checked").val();
+        var q9 = $("input[name='9']:checked").val();
+        var q10 = $("input[name='10']:checked").val();
+        var q11 = $("input[name='11']:checked").val();
+        var q12 = $("input[name='12']:checked").val();
+
+        var questionOnetToSix = Number(q2) + Number(q3) + Number(q4) + Number(q5) + Number(q6) + 10;
+        var questionSevenToTwelve = Number(q8) + Number(q9) + Number(q10) + Number(q11) + Number(q12) + 10;
+
+        var resultNumArr = [questionOnetToSix, questionSevenToTwelve];
+
+        //결과를 배열에 담아서 for문으로 뭐랑 일치하는지 확인.... 옵치 배열은 미리 저장해둔다.
+        
+        console.log('결과 : ' + resultNumArr);
+        console.log('총 배점 : ');
+        console.log('내향 및 외향 점수 : ' + q2 + '/' + q3 + '/' + q4 + '/' + q5 + '/' + q6);
+        console.log('논리 및 공감 점수 : ' + q8 + '/' + q9 + '/' + q10 + '/' + q11 + '/' + q12);
+
+        var matchedHero = findHero(resultNumArr);
+        alert('호엥~~ ' + matchedHero + ' 와(과) 닮으셨군요!! ^-~');
+        console.log(matchedHero);
+
+    });
+
+    function findHero(resultNumArr) {
+        const WIDOWMAKER = ['WIDOWMAKER', 20, 0];
+        const ROADHOG = ['ROADHOG', 20, 4];
+        const REAPER = ['REAPER', 19, 1];
+        const SIGMA = ['SIGMA', 18, 2];
+        const MOIRA = ['MOIRA', 17, 0];
+        const SYMMETRA = ['SYMMETRA', 16, 0];
+        const HANZO = ['HANZO', 16, 2];
+        const ZENYATTA = ['ZENYATTA', 15, 20];
+        const BASTION = ['BASTION', 14, 10];
+        const DOOMFIST = ['DOOMFIST', 13, 0];
+        const SOLDIER76 = ['SOLDIER76', 12, 2];
+        const MCREE = ['MCREE', 12, 12];
+        const SOMBRA = ['SOMBRA', 12, 4];
+        const ZARYA = ['ZARYA', 11, 6];
+        const MEI = ['MEI', 10, 20];
+        const WREKINGBALL = ['WREKINGBALL', 10, 4];
+        const PHARAH = ['PHARAH', 10, 2];
+        const TORBJORN = ['TORBJORN', 9, 2];
+        const ASH = ['ASH', 9, 14];
+        const ANA = ['ANA', 8, 6];
+        const GENJI = ['GENJI', 8, 16];
+        const MERCY = ['MERCY', 7, 8];
+        const JUNKRAT = ['JUNKRAT', 6, 16];
+        const WINSTON = ['WINSTON', 6, 14];
+        const ECHO = ['ECHO', 5, 8];
+        const ORISA = ['ORISA', 5, 6];
+        const BRIGITTE = ['BRIGITTE', 4, 18];
+        const BAPTISTE = ['BAPTISTE', 3, 14];
+        const DVA = ['DVA', 2, 8];
+        const REINHARDT = ['REINHARDT', 1, 18];
+        const TRACER = ['TRACER', 0, 16];
+        const LUCIO = ['LUCIO', 0, 20]; 
+
+        const HEROS = [];
+        HEROS.push(WIDOWMAKER,  ROADHOG, REAPER, SIGMA,  MOIRA, SYMMETRA,HANZO, ZENYATTA, BASTION, DOOMFIST, SOLDIER76, MCREE,
+            SOMBRA, ZARYA,  MEI,  WREKINGBALL, PHARAH,  TORBJORN, ASH, ANA,   GENJI, 
+            MERCY, JUNKRAT, WINSTON, ECHO, ORISA, BRIGITTE, BAPTISTE,   DVA, REINHARDT, TRACER, LUCIO);
+
+        for (i in HEROS) {
+            console.log("i: " + i + "; value: " + HEROS[i]);
+        }
+
+        for (i in HEROS) {
+            if (resultNumArr[0] === HEROS[i][1]) { // 첫째자리가 맞을 떄
+                
+                if (resultNumArr[1] === HEROS[i][2]) { //둘째자리까지 맞으면 영웅을 return
+                    return HEROS[i][0];
+                }
+
+                if (resultNumArr[0] >= 15) {//만약 첫째자리가 15 이상이고
+                    if (resultNumArr[1] >= 10) { //둘째자리가 10과 같거나 크면 젠야타.
+                        return ZENYATTA[0];
+                    }
+                } 
+            }else {
+                    //둘째자리가 맞지 않다면 첫째자리가 같은 영웅들의 둘째자리 데이터 중 결과와 근사한 값으로 보내버리기
+                    return findNearHero(resultNumArr, HEROS);
+                }
+        }
+    }
+
+    function findNearHero(resultNumArr, HEROS) {
+        var firstMatchedHeros = [];
+        var firstMatchedHerosSecond = []; //비교할 두번째 값
+
+        for (i in HEROS) {
+            if (resultNumArr[0] === HEROS[i][1]) {
+                firstMatchedHeros.push(HEROS[i]);
+                firstMatchedHerosSecond.push(HEROS[i][2]);
+            }
+        }
+
+        console.log('첫째자리가 같은 영웅 : ' + firstMatchedHeros);
+        console.log('첫째자리가 같은 영웅의 둘째자리 : ' + firstMatchedHerosSecond);
+
+        var near = 0; //제일 가까운 수가 담길 변수
+        var target = resultNumArr[1];
+        var abs = 0;
+        var min = Math.max.apply(null, firstMatchedHerosSecond); //해당 범위에서 가장 큰 값
+        console.log('최댓값 :' + min);
+        console.log('근사값을 찾는 숫자: ' + target);
+        
+        for (var i = 0; i < firstMatchedHerosSecond.length; i++) {
+            abs = ((firstMatchedHerosSecond[i] - target) < 0) ? - ((firstMatchedHerosSecond[i]) - target) : (firstMatchedHerosSecond[i] - target);
+            if (abs < min) {
+                min = abs;
+                near = firstMatchedHerosSecond[i];
+            }
+        }
+
+        console.log('제일 가까운 값 : ' + near);
+
+        for (i in firstMatchedHeros) {
+            if (firstMatchedHeros[i][2] === near) {
+                return firstMatchedHeros[i][0];
+            }
+        }
+    }
+</script>
+
+</html>
