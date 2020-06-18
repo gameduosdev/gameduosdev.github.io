@@ -4,35 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-        type="text/css" />
-    <link href='http://www.openhiun.com/hangul/nanumbarungothic.css' rel='stylesheet' type='text/css'>
-    <!-- <link rel="stylesheet" href="psersonalTest.css" /> -->
-    <title>오버워치 심리테스트 - Beta</title>
-    <meta name="description" content="나와 잘 맞는 오버워치 영웅은 누구일까?">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.5/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.5/dist/semantic.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;900&display=swap"
+    rel="stylesheet">    <!-- <link rel="stylesheet" href="psersonalTest.css" /> -->
+    <title>RPG 직업 찾기 - Beta</title>
+    <meta name="description" content="RPG 세계에서 나의 직업은 무엇일까?">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Game Duos">
-    <meta property="og:description" content="나와 잘 맞는 오버워치 영웅은 누구일까?">
+    <meta property="og:description" content="RPG 세계에서 나의 직업은 무엇일까?">
     <meta property="og:image" content="https://raw.githubusercontent.com/gameduosdev/gameduosdev.github.io/master/picachu.jpg">
     <meta property="og:image:width" content="400" />
     <meta property="og:image:height" content="300" />
     <meta property="og:url" content="https://gameduosdev.github.io/">
 </head>
 <style>
-    .body{
+.body{
     margin: 0;
     padding: 0;
 }
+.ui {
+    word-break: keep-all !important;
+    font-family: 'Noto Sans KR' !important;
+}
 
-.nav.container{
+[data-name="mojs-shape"] {
+    display: none;
+}
+
+.warning-wrapper{
+    margin-top: 2rem;
+}
+
+.warning-speach-bubble{
+    margin: auto;
+	position: relative;
+	max-width: 30em;
+	background-color: #db4455;
+	padding: 1.125em 1.5em;
+    font-size: inherit;
+    border-radius: 1rem;
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    color: white;
+}
+
+.warning-speach-bubble::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+    bottom: 100%;
+    /* // offset should move with padding of parent */
+	left: 1.5em; 
+	border: .75rem solid transparent;
+	border-top: none;
+
+	border-bottom-color: #db4455;
+	filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
+
+.navbar{
     width: 100%;
-    height: 15rem;
+    height: 10rem;
     background-color: #57ae8c;
 }
 
 .header.container{
     width: 100%;
-    height: 18rem;
+    height: 20rem;
     padding: 3rem;
 }
 
@@ -46,124 +86,252 @@
     margin: 2%;
 }
 
-.modal > .header {
+.npc-container{
     text-align: center;
-}
-.modal > .content > p{
-    text-align: center;
-    color: gray;
+    padding: 1rem;
 }
 
-.modal > .content > h2{
-    text-align: center;
-    color: teal;
+.speach-bubble {
+    margin: auto;
+	position: relative;
+	max-width: 30em;
+    cursor: pointer;
+	background-color: #fff;
+	padding: 1.125em 1.5em;
+	font-size: 1.25em;
+	border-radius: 1rem;
+  box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
 }
 
-.modal > .content > h1{
-    text-align: center;
+.speach-bubble::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+    bottom: 100%;
+    /* // offset should move with padding of parent */
+	left: 1.5em; 
+	border: .75rem solid transparent;
+	border-top: none;
+
+	border-bottom-color: #fff;
+	filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
 }
+
+.triangle-down {
+    position:relative;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+    border-top: 7px solid #555;
+    animation:bounce 0.5s ease-in Infinite Alternate;
+}
+
+/* animation */
+
+.ears{
+    animation-duration: 1s;
+    animation-name: updown;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.torso{
+    animation-duration: 1s;
+    animation-name: torso_updown;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.eyebrow{
+    animation-duration: 1s;
+    animation-name: torso_updown;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.mouth{
+    animation-duration: 0.4s;
+    animation-name: updown;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes bounce {
+    from {
+        top:0px;
+    }
+    to {
+        top:6px;
+        width:115px;
+        height:90px
+    } 
+}
+@keyframes updown{
+    from{
+        transform: rotate3d(0, -.01, 20deg);
+    }
+
+    to{
+        transform: rotate3d(.2, -.05, -.01, 20deg);
+    }
+}
+@keyframes torso_updown{
+    from{
+        transform: rotate3d(0, -.01, 20deg);
+    }
+
+    to{
+        transform: rotate3d(.10, -.05, -.01, 5deg);
+    }
+}
+/* mobile */
 
 @media screen and (max-width: 768px) {
-    .centered.banner{
+    .desktop.ad{
         display: none;
     }
 }
 
 </style>
 <body>
-    <div class="ui main container">
-        <div class="ui nav container"></div>
-        <header>
-            <div class="ui header container">
-                <h2 class="ui center aligned icon header">
-                    <i class="circular users icon"></i>
-                    나와 맞는 오버워치 영웅을 찾아보세요.
-                </h2>
-                <div class="header meta">
-                    <span>총 32명의 오버워치 영웅 중 나와 맞는 영웅은 누구일까요?</span>
-                </div>
+    <div class="navbar"></div>
+    <header>
+        <div class="ui header container">
+            <h2 class="ui center aligned icon header">
+                <i class="circular gamepad icon"></i>
+                RPG 세상에서 나의 직업은?
+            </h2>
+            <div class="header meta">
+                <span>RPG 세상에 들어간다면 나는 무슨 직업을 가지게 될까?</span>
             </div>
-        </header>
+        </div>
+    </header>
+    <div class="ui main container">
+        <div class="npc-container">
+            <div class="svg-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512" height="200"
+                    viewBox="0 0 512 512" width="200">
+                    <path class="ears"
+                        d="m359.546 208.777h-13.02l4.517-61.333 65.915-20.388c1.418-.439 2.714.958 2.171 2.339l-20.818 52.966c-6.263 15.937-21.641 26.416-38.765 26.416z"
+                        fill="#d09080" />
+                    <path class="ears"
+                        d="m152.453 208.777h13.02l-4.517-61.333-65.915-20.388c-1.418-.439-2.714.958-2.171 2.339l20.818 52.966c6.264 15.937 21.642 26.416 38.765 26.416z"
+                        fill="#d8a595" />
+                    <path class="torso"
+                        d="m447.274 422.473c14.405-12.395 22.69-30.454 22.69-49.458v-.004c0-29.747-20.338-55.639-49.239-62.685l-38.855-9.472-12.155-13.131c-9.885-10.678-21.103-20.02-33.368-27.801-11.551 24.291-35.097 39.264-80.348 39.264s-68.798-14.973-80.348-39.265c-12.265 7.781-23.483 17.123-33.368 27.801l-12.155 13.13c-12.4 3.023-23.387 5.701-38.852 9.472-28.901 7.046-49.242 32.939-49.242 62.686v.004c0 19.004 8.285 37.063 22.69 49.458-14.145 9.129-22.69 24.813-22.69 41.648v45.776c0 1.162.942 2.103 2.103 2.103h423.723c1.162 0 2.103-.942 2.103-2.103v-45.776c.002-16.834-8.543-32.519-22.689-41.647z"
+                        fill="#e2bcaf" />
+                    <path class="torso"
+                        d="m469.965 373.015v-.004c0-29.748-20.338-55.64-49.239-62.685l-9.794-2.388c11.083 11.683 17.723 27.421 17.723 44.418v.004c0 12.603-3.644 24.791-10.301 35.187-5.242 8.186-5.011 18.796.73 26.641 6.13 8.375 9.571 18.595 9.571 29.279 0 26.443-21.436 47.879-47.879 47.879h-338.741v18.552c0 1.162.942 2.103 2.103 2.103h423.723c1.162 0 2.103-.942 2.103-2.103v-45.776c0-16.835-8.545-32.52-22.69-41.648 14.406-12.396 22.691-30.456 22.691-49.459z"
+                        fill="#d8a595" />
+                    <path
+                        d="m269.523 27.763 8.417 18.106c1.989 4.278.737 9.363-3.009 12.229-11.162 8.539-26.66 8.539-37.822 0-3.747-2.866-4.998-7.951-3.009-12.229l8.42-18.112c-49.545 6.904-86.599 51.314-82.814 102.715l6.565 89.145c3.461 46.999 22.989 79.569 89.728 79.569s86.267-32.57 89.728-79.569l6.565-89.145c3.786-51.386-33.245-95.784-82.769-102.709z"
+                        fill="#e2bcaf" />
+                    <path
+                        d="m277.239 29.165c22.561 19.216 36.107 48.572 33.744 80.652l-6.565 89.145c-3.461 46.999-22.989 79.569-89.728 79.569-10.486 0-19.807-.804-28.082-2.342 13.61 14.53 35.364 22.997 69.393 22.997 66.74 0 86.267-32.57 89.728-79.569l6.565-89.145c3.585-48.68-29.46-91.088-75.055-101.307z"
+                        fill="#d8a595" />
+                    <path
+                        d="m223.993 150.743c0 17.677 14.33 32.007 32.007 32.007s32.007-14.33 32.007-32.007c0-8.509-3.32-16.241-8.736-21.974h-46.543c-5.415 5.733-8.735 13.466-8.735 21.974z"
+                        fill="#fff" />
+                    <path
+                        d="m279.271 128.769h-14.105c1.411 3.609 2.185 7.537 2.185 11.647 0 17.677-14.33 32.007-32.007 32.007-1.019 0-2.027-.048-3.021-.141 5.854 6.432 14.294 10.469 23.676 10.469 17.677 0 32.007-14.33 32.007-32.007.001-8.51-3.319-16.242-8.735-21.975z"
+                        fill="#f1f1f4" />
+                    <path
+                        d="m274.931 58.098c-11.162 8.539-26.661 8.539-37.822 0-3.747-2.866-4.998-7.951-3.009-12.229l21.073-45.329c.335-.721 1.36-.721 1.695 0l21.073 45.329c1.988 4.278.737 9.363-3.01 12.229z"
+                        fill="#fffbe4" />
+                    <path class="torso"
+                        d="m256.438 367.602c-12.547 0-23.111-6.489-30.548-18.765-5.175-8.542-7.021-17.084-7.096-17.443-.886-4.186 1.79-8.296 5.975-9.182 4.184-.878 8.296 1.79 9.181 5.975.01.042 1.475 6.625 5.381 12.934 4.578 7.396 10.174 10.99 17.108 10.99 17.228 0 22.438-23.684 22.489-23.924.886-4.184 4.992-6.855 9.181-5.975 4.185.886 6.86 4.996 5.975 9.182-.076.359-1.921 8.9-7.096 17.443-7.439 12.276-18.002 18.765-30.55 18.765z"
+                        fill="#d8a595" />
+                    <path class="torso"
+                        d="m134.113 421.375v90.625h-15.491v-90.625c0-4.278 3.468-7.746 7.746-7.746s7.745 3.468 7.745 7.746zm154.996-24.266h68.31c4.278 0 7.746-3.467 7.746-7.746s-3.468-7.746-7.746-7.746h-68.31c-13.606 0-25.68 6.686-33.109 16.945-7.429-10.259-19.503-16.945-33.109-16.945h-68.31c-4.278 0-7.746 3.467-7.746 7.746s3.468 7.746 7.746 7.746h68.31c13.985 0 25.363 11.378 25.363 25.363v89.528h15.491v-89.527c.001-13.986 11.379-25.364 25.364-25.364zm96.524 16.52c-4.278 0-7.746 3.467-7.746 7.746v90.625h15.491v-90.625c0-4.278-3.468-7.746-7.745-7.746z"
+                        fill="#d8a595" />
+                    <path class="torso"
+                        d="m134.113 491.345v20.655h-15.491v-20.655zm114.141 0v20.655h15.491v-20.655zm132.521 0h-2.888v20.655h15.491v-22.332c-4.015 1.093-8.241 1.677-12.603 1.677z"
+                        fill="#d09080" />
+                    <path class="eyebrow"
+                        d="m279.616 136.515h-47.227c-8.905 0-17.277-3.467-23.573-9.765-3.025-3.025-3.024-7.929.001-10.954 3.025-3.024 7.929-3.025 10.954.001 3.37 3.371 7.851 5.226 12.618 5.226h47.227c4.745 0 9.208-1.842 12.572-5.186 2.856-2.9 7.514-3.105 10.617-.391 3.219 2.817 3.548 7.708.731 10.928-.113.13-.234.259-.356.381-6.295 6.293-14.663 9.76-23.564 9.76z"
+                        fill="#d8a595" />
+                    <path class="mouth"
+                        d="m309.796 262.559c-1.982 0-3.965-.756-5.477-2.268l-3.033-3.033c-2.816-2.817-6.56-4.367-10.542-4.367h-69.495c-3.978 0-7.717 1.549-10.53 4.362l-3.037 3.037c-3.025 3.026-7.929 3.027-10.954.001-3.025-3.025-3.026-7.929-.001-10.954l3.037-3.038c5.74-5.74 13.369-8.899 21.485-8.899h69.495c8.121 0 15.756 3.162 21.497 8.905l3.032 3.032c3.025 3.026 3.025 7.929 0 10.955-1.513 1.511-3.495 2.267-5.477 2.267zm-27.923 8.024c0-4.278-3.468-7.746-7.746-7.746h-36.255c-4.278 0-7.746 3.467-7.746 7.746s3.468 7.746 7.746 7.746h36.255c4.278 0 7.746-3.468 7.746-7.746z"
+                        fill="#d8a595" />
+                    <path class="mouth"
+                        d="m312.241 246.304c-4.552-4.553-10.294-7.483-16.525-8.502-2.475 5.51-5.539 10.561-9.301 15.089h4.33c3.983 0 7.727 1.55 10.542 4.367l3.033 3.033c1.512 1.512 3.495 2.268 5.477 2.268s3.965-.756 5.477-2.268c3.025-3.026 3.025-7.929 0-10.955z"
+                        fill="#d09080" />
+                    <path
+                        d="m281.873 270.583c0-3.763-2.683-6.898-6.239-7.599-10.184 7.403-23.652 12.408-41.327 14.476 1.067.554 2.28.868 3.566.868h36.255c4.277.001 7.745-3.467 7.745-7.745z"
+                        fill="#d09080" />
+                    <g fill="#d8a595">
+                        <path
+                            d="m139.072 331.706c1.512 1.512 3.495 2.268 5.477 2.268s3.965-.756 5.477-2.268c3.025-3.026 3.025-7.929 0-10.955l-19.897-19.898c-5.98 1.458-11.631 2.836-17.614 4.294z" />
+                        <path
+                            d="m372.928 331.706c-1.512 1.512-3.495 2.268-5.477 2.268s-3.965-.756-5.477-2.268c-3.025-3.026-3.025-7.929 0-10.955l19.897-19.898c5.98 1.458 11.631 2.836 17.614 4.294z" />
+                        <path
+                            d="m239.112 218.899c-1.983 0-3.965-.756-5.478-2.269-3.024-3.026-3.024-7.929.002-10.954l3.724-3.723c3.025-3.025 7.929-3.024 10.954.001 3.024 3.026 3.024 7.929-.002 10.954l-3.724 3.723c-1.512 1.511-3.494 2.268-5.476 2.268z" />
+                        <path
+                            d="m272.888 218.899c-1.982 0-3.964-.756-5.476-2.268l-3.723-3.723c-3.025-3.025-3.026-7.929-.001-10.954 3.025-3.026 7.929-3.025 10.954-.001l3.723 3.723c3.025 3.025 3.026 7.929.001 10.954-1.513 1.512-3.496 2.269-5.478 2.269z" />
+                    </g>
+                    <path class="mouth"
+                        d="m221.251 252.893c-3.077 0-5.988-1.846-7.197-4.878l-7.379-18.501c-1.585-3.974.351-8.479 4.325-10.064 3.975-1.584 8.479.353 10.064 4.326l7.379 18.501c1.585 3.974-.351 8.479-4.325 10.064-.941.374-1.912.552-2.867.552z"
+                        fill="#f1f1f4" />
+                    <path class="mouth"
+                        d="m290.741 252.893c-.955 0-1.926-.178-2.867-.553-3.974-1.585-5.91-6.091-4.325-10.064l7.379-18.501c1.584-3.974 6.092-5.909 10.064-4.326 3.974 1.585 5.91 6.091 4.325 10.064l-7.379 18.501c-1.209 3.033-4.12 4.879-7.197 4.879z"
+                        fill="#f1f1f4" />
+                    <path
+                        d="m256.02 99.071c-14.151 0-28.109-4.717-39.304-13.281-3.397-2.599-4.045-7.461-1.445-10.858 2.599-3.399 7.462-4.044 10.858-1.446 8.508 6.509 19.124 10.094 29.892 10.094 10.767 0 21.383-3.584 29.893-10.094 3.398-2.597 8.259-1.952 10.858 1.446s1.952 8.259-1.446 10.858c-11.197 8.565-25.156 13.281-39.306 13.281z"
+                        fill="#d8a595" />
+                </svg>
+            </div>
+            <div class="speach-bubble" onclick="completeSentence(phraseArray, 'randomAdjective')">
+                <div class="typing" id="typing">
+                </div>
+                <p id="randomAdjective" class="label label-success">
+                    <!-- <p class="first_script">RPG 직업 소개소에 온걸 환영한다네.</p>
+                <p class="frist_script">나는 직업 소개사의 장이라네.</p>
+                <p class="second_script">지금부터 당신에게 어울리는 직업을 배정해주지.</p>
+                <p class="second_script">아래의 질문에 답을 해서 나에게 제출해주게.</p>
+                <p class="frist_script">내 이름은 겜☆듀＆지존zZ 이라네.</p>
+                <p>아래에 답을 해주면 직업을 안내해주겠네.</p> -->
+                <div class="ui hidden divider"></div>
+                <i class="triangle-down"></i>
+            </div>
+        </div>
+        <div class="ui centered banner test desktop ad"></div>
+        <div class="ui mobile leaderboard test ad" data-text="Mobile Leaderboard"></div>
         <div class="ui divider"></div>
         <div class="ui raised very padded text container segment">
             <div class="ui items">
-                <!-- <div class="item">
-                    <div class="content">
-                        <span class="header">
-                            1. 갈등은 필요악이다.
-                        </span>
-                        <div class="ui hidden divider"></div>
-                        <div class="ui form">
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="-2" >
-                                    <label>매우 그렇다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="-1">
-                                    <label>그렇다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="0">
-                                    <label>모르겠다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="1">
-                                    <label>그렇지 않다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="2" checked="checked">
-                                    <label>매우 그렇지 않다.</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui hidden divider"></div>
-                <div class="ui divider"></div>
-                <div class="ui hidden divider"></div> -->
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question1">
-                            1. 가벼운 잡담 여러 번 보다는 깊이 있는 논의 한 번이 낫다.
+                            1. 다른 사람들에게 내 의견을 말하는 것이 어렵습니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="2">
+                                    <input type="radio" name="1" value="-10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="1">
+                                    <input type="radio" name="1" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="0">
+                                    <input type="radio" name="1" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="-1">
+                                    <input type="radio" name="1" value="5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="-2">
+                                    <input type="radio" name="1" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -176,37 +344,37 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question2">
-                            2. 쉬는 날은 다른 사람과 같이 보내는 것이 좋다.
+                            2. 파티플레이보다 솔로플레이를 선호합니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="-2">
+                                    <input type="radio" name="2" value="-10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="-1">
+                                    <input type="radio" name="2" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="0">
+                                    <input type="radio" name="2" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="1">
+                                    <input type="radio" name="2" value="5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="2">
+                                    <input type="radio" name="2" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -219,37 +387,37 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question3">
-                            3. 팀의 일원으로 일하는 것보다 혼자 일 하는 것이 좋다.
+                            3. 어떤 모임에서 장을 맡아본 경험이 있습니다.(반장, 동아리장, 길드장..)
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="2">
+                                    <input type="radio" name="3" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="1">
+                                    <input type="radio" name="3" value="5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="0">
+                                    <input type="radio" name="3" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="-1">
+                                    <input type="radio" name="3" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="-2">
+                                    <input type="radio" name="3" value="-10">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -262,37 +430,37 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question4">
-                            4. 대화를 주도하는 편이다.
+                            4. 많은 사람들이 장소에서는 구석자리를 선호하는 편입니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="-2">
+                                    <input type="radio" name="4" value="-10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="-1">
+                                    <input type="radio" name="4" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="0">
+                                    <input type="radio" name="4" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="1">
+                                    <input type="radio" name="4" value="5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="2">
+                                    <input type="radio" name="4" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -305,19 +473,62 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question5">
-                            5. 친구와 연락 할 땐 전화가 좋다.
+                            5. 조별과제를 할 때 발표를 주로 맡는 편입니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="-2">
+                                    <input type="radio" name="5" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="-1">
+                                    <input type="radio" name="5" value="5">
+                                    <label class="label" style="cursor: pointer;">그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="0">
+                                    <label class="label" style="cursor: pointer;">모르겠다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="-5">
+                                    <label class="label" style="cursor: pointer;">그렇지 않다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="5" value="-10">
+                                    <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui divider"></div>
+                <div class="ui hidden divider"></div>
+                <div class="item">
+                    <div class="content">
+                        <span class="header" id="question6">
+                            6. 상대방과 대화할 때 상대방이 감정적이라는 생각이 종종 듭니다.
+                        </span>
+                        <div class="ui hidden divider"></div>
+                        <div class="ui form">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6" value="10">
+                                    <label class="label" style="cursor: pointer;">매우 그렇다.</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="6" value="5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
@@ -329,101 +540,13 @@
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="1">
+                                    <input type="radio" name="6" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="2">
-                                    <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui hidden divider"></div>
-                <div class="ui centered banner test ad"></div>
-                <div class="ui mobile leaderboard test ad" data-text="Mobile Leaderboard"></div>
-                <div class="ui divider"></div>
-                <div class="ui hidden divider"></div>
-                <!-- <div class="item">
-                    <div class="content">
-                        <span class="header">
-                            7. 악법도 법이다.
-                        </span>
-                        <div class="ui hidden divider"></div>
-                        <div class="ui form">
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="-2">
-                                    <label>매우 그렇다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="-1" checked="checked">
-                                    <label>그렇다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="0">
-                                    <label>모르겠다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="1">
-                                    <label>그렇지 않다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="2">
-                                    <label>매우 그렇지 않다.</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui hidden divider"></div>
-                <div class="ui divider"></div>
-                <div class="ui hidden divider"></div> -->
-                <div class="item">
-                    <div class="content">
-                        <span class="header" id="question6">
-                            6. 어떠한 상황에도 이야기는 본론만 깔끔하게 말 하는 것이 좋다.
-                        </span>
-                        <div class="ui hidden divider"></div>
-                        <div class="ui form">
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="-2">
-                                    <label class="label" style="cursor: pointer;">매우 그렇다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="-1">
-                                    <label class="label" style="cursor: pointer;">그렇다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="0">
-                                    <label class="label" style="cursor: pointer;">모르겠다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="1">
-                                    <label class="label" style="cursor: pointer;">그렇지 않다.</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="2">
+                                    <input type="radio" name="6" value="-10">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -436,37 +559,37 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question7">
-                            7. 상대방을 위해서라면 분위기가 불편하더라도 상대방의 단점을 이야기해준다.
+                            7. 캐릭터를 키울 때 다른 무엇보다 효율을 중요시하는 편입니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="-2">
+                                    <input type="radio" name="7" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="-1">
+                                    <input type="radio" name="7" value="5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="0">
+                                    <input type="radio" name="7" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="1">
+                                    <input type="radio" name="7" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="2">
+                                    <input type="radio" name="7" value="-10">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -479,37 +602,37 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question8">
-                            8. 나의 행동이 남들에게 어떻게 보일지는 중요하지않다.
+                            8. 새로운 일이라도 부딪혀보며 배우는 편입니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="-2">
+                                    <input type="radio" name="8" value="-9">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="-1">
+                                    <input type="radio" name="8" value="-4">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="0">
+                                    <input type="radio" name="8" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="1">
+                                    <input type="radio" name="8" value="4">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="2">
+                                    <input type="radio" name="8" value="9">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -522,37 +645,37 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question9">
-                            9. 선의의 거짓말도 결국에는 거짓말일 뿐이다.
+                            9. 대화를 할 때 해결방안을 제안하기보다는 공감을 해주는 편입니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="11" value="-2">
+                                    <input type="radio" name="9" value="-10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="11" value="-1">
+                                    <input type="radio" name="9" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="11" value="0">
+                                    <input type="radio" name="9" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="11" value="1">
+                                    <input type="radio" name="9" value="5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="11" value="2">
+                                    <input type="radio" name="9" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -565,38 +688,38 @@
                 <div class="item">
                     <div class="content">
                         <span class="header" id="question10">
-                            10. 때로는 논리보다 가슴이 시키는 일을 한다.
+                            10. 법과 자신의 이익을 저울질할 수 있습니다.
                         </span>
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="12" value="2">
+                                    <input type="radio" name="10" value="10">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="12" value="1">
+                                    <input type="radio" name="10" value="5">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="12" value="0">
+                                    <input type="radio" name="10" value="0">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="12" value="-1">
+                                    <input type="radio" name="10" value="-5">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="12" value="-2">
-                                    <label class="label"style="cursor: pointer;">매우 그렇지 않다.</label>
+                                    <input type="radio" name="10" value="-10">
+                                    <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
                         </div>
@@ -605,165 +728,232 @@
                 <div class="ui hidden divider"></div>
                 <div class="ui divider"></div>
                 <div class="ui hidden divider"></div>
+                <div class="item">
+                    <button class="massive fluid ui teal button" id="find">직업 찾기</button>
+                </div>
             </div>
-            <button class="massive fluid ui teal button" id="find">영웅 찾기</button>
         </div>
     </div>
+    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+        href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
-
 <script>
-    // 글자만 클릭해도 라디오 체크 되게!!!
-    $('.label').on('click', function (){
-        $(this).prev().prop("checked", true);
-        // $(this).parent().parent().parent().prev().prev().prev().attr("tabindex", -1).focus();;
-    })
-    
+    const BARD = [50, -40, '음유시인'];
+    const POSTIONMERCHANT = [40, 30, '물약상인'];
+    const BLACKSMITH = [40, -20, '대장장이'];
+    const EMPERROR = [30, 50, '황제'];
+    const SWORDMAN = [30, 10, '검술사'];
+    const AXMAN = [30, -20, '도끼술사'];
+    const PRIEST = [25, -40, '성직자'];
+    const MAGICIAN = [20, 20, '마법사'];
+    const GUNNER = [10, 10, '총잡이'];
+    const DEVILSSUBORDINATE = [10, -20, '마왕의 부하'];
+    const DEVIL = [0, 50, '마왕'];
+    const HEALER = [0, -10, '치유사'];
+    const ARCHER = [-10, 20, '궁수'];
+    const SAGE = [-20, 50, '현자'];
+    const BOUNTYHUNTER = [-20, 20, '현상금 사냥꾼'];
+    const FIGHTER = [-20, -30, '격투가'];
+    const WANTED = [-25, 40, '현상금 수배범'];
+    const ALCHEMIST = [-30, 50, '연금술사'];
+    const THIEF = [-30, 20, '도적'];
+    const DRUID = [-30, -40, '드루이드'];
+    const SUMMONER = [-35, -10, '소환사'];
+    const BLACKMAGICIAN = [-40, 50, '흑마법사'];
+    const WEREWOLF = [-50, -20, '늑대인간'];
+    const PROPHET = [-50, -40, '예언가'];
 
+    const RPGCLASS = [];
 
-    $('#find').on('click', function () {
-        // var q1 = $("input[name='1']:checked").val();
-        var q2 = $("input[name='2']:checked").val();
-        var q3 = $("input[name='3']:checked").val();
-        var q4 = $("input[name='4']:checked").val();
-        var q5 = $("input[name='5']:checked").val();
-        var q6 = $("input[name='6']:checked").val();
+    RPGCLASS.push(BARD, POSTIONMERCHANT, BLACKSMITH, EMPERROR, SWORDMAN, AXMAN, PRIEST, MAGICIAN, GUNNER,
+        DEVILSSUBORDINATE, DEVIL, HEALER, ARCHER, SAGE, BOUNTYHUNTER, FIGHTER, WANTED, ALCHEMIST, THIEF, DRUID,
+        SUMMONER, BLACKMAGICIAN, WEREWOLF, PROPHET);
+</script>
+<script>
+    var clickCount = 0;
+    var i = 0;
+    var txt = 'RPG 직업 소개소에 온걸 환영한다네. 나는 직업 소개소의 장이라네. 여기를 클릭해봐!';
+    var speed = 50;
+    var timer;
 
-        // var q7 = $("input[name='7']:checked").val();
-        var q8 = $("input[name='8']:checked").val();
-        var q9 = $("input[name='9']:checked").val();
-        var q10 = $("input[name='10']:checked").val();
-        var q11 = $("input[name='11']:checked").val();
-        var q12 = $("input[name='12']:checked").val();
-
-        var questionOnetToSix = Number(q2) + Number(q3) + Number(q4) + Number(q5) + Number(q6) + 10;
-        var questionSevenToTwelve = Number(q8) + Number(q9) + Number(q10) + Number(q11) + Number(q12) + 10;
-
-        var resultNumArr = [questionOnetToSix, questionSevenToTwelve];
-
-        //결과를 배열에 담아서 for문으로 뭐랑 일치하는지 확인.... 옵치 배열은 미리 저장해둔다.
-
-        console.log('결과 : ' + resultNumArr);
-        console.log('총 배점 : ');
-        console.log('내향 및 외향 점수 : ' + q2 + '/' + q3 + '/' + q4 + '/' + q5 + '/' + q6);
-        console.log('논리 및 공감 점수 : ' + q8 + '/' + q9 + '/' + q10 + '/' + q11 + '/' + q12);
-
-        var matchedHero = findHero(resultNumArr);
-        alert('호엥~~ ' + matchedHero + ' 와(과) 닮으셨군요!! ^-~');
-        console.log(matchedHero);
-
-    });
-
-    function findHero(resultNumArr) {
-        const WIDOWMAKER = ['WIDOWMAKER', 20, 0];
-        const ROADHOG = ['ROADHOG', 20, 4];
-        const REAPER = ['REAPER', 19, 1];
-        const SIGMA = ['SIGMA', 18, 2];
-        const MOIRA = ['MOIRA', 17, 0];
-        const SYMMETRA = ['SYMMETRA', 16, 0];
-        const HANZO = ['HANZO', 16, 2];
-        const ZENYATTA = ['ZENYATTA', 15, 20];
-        const BASTION = ['BASTION', 14, 10];
-        const DOOMFIST = ['DOOMFIST', 13, 0];
-        const SOLDIER76 = ['SOLDIER76', 12, 2];
-        const MCREE = ['MCREE', 12, 12];
-        const SOMBRA = ['SOMBRA', 12, 4];
-        const ZARYA = ['ZARYA', 11, 6];
-        const MEI = ['MEI', 10, 20];
-        const WREKINGBALL = ['WREKINGBALL', 10, 4];
-        const PHARAH = ['PHARAH', 10, 2];
-        const TORBJORN = ['TORBJORN', 9, 2];
-        const ASH = ['ASH', 9, 14];
-        const ANA = ['ANA', 8, 6];
-        const GENJI = ['GENJI', 8, 16];
-        const MERCY = ['MERCY', 7, 8];
-        const JUNKRAT = ['JUNKRAT', 6, 16];
-        const WINSTON = ['WINSTON', 6, 14];
-        const ECHO = ['ECHO', 5, 8];
-        const ORISA = ['ORISA', 5, 6];
-        const BRIGITTE = ['BRIGITTE', 4, 18];
-        const BAPTISTE = ['BAPTISTE', 3, 14];
-        const DVA = ['DVA', 2, 8];
-        const REINHARDT = ['REINHARDT', 1, 18];
-        const TRACER = ['TRACER', 0, 16];
-        const LUCIO = ['LUCIO', 0, 20];
-
-        const HEROS = [];
-        HEROS.push(WIDOWMAKER, ROADHOG, REAPER, SIGMA, MOIRA, SYMMETRA, HANZO, ZENYATTA, BASTION, DOOMFIST, SOLDIER76, MCREE,
-            SOMBRA, ZARYA, MEI, WREKINGBALL, PHARAH, TORBJORN, ASH, ANA, GENJI,
-            MERCY, JUNKRAT, WINSTON, ECHO, ORISA, BRIGITTE, BAPTISTE, DVA, REINHARDT, TRACER, LUCIO);
-
-        for (i in HEROS) {
-            console.log("i: " + i + "; value: " + HEROS[i]);
-        }
-
-        if (resultNumArr[0] === 5) {//만약 첫째자리가 5이고
-            if (resultNumArr[1] >= 10) { //둘째자리가 10과 같거나 크면 브리기테.
-                return BRIGITTE[0];
-            }
-        }
-
-        if (resultNumArr[0] >= 15) {//만약 첫째자리가 15 이상이고
-            if (resultNumArr[1] >= 10) { //둘째자리가 10과 같거나 크면 젠야타.
-                return ZENYATTA[0];
-            }
-        }
-
-
-        for (i in HEROS) {
-            if (resultNumArr[0] === HEROS[i][1]) { // 첫째자리가 맞을 떄
-                if (resultNumArr[1] === HEROS[i][2]) { //둘째자리까지 맞으면 영웅을 return
-                    return HEROS[i][0];
-                }
-
-            } else {
-                //둘째자리가 맞지 않다면 첫째자리가 같은 영웅들의 둘째자리 데이터 중 결과와 근사한 값으로 보내버리기
-                return findNearHero(resultNumArr, HEROS);
-            }
+    function scriptStop() {
+        clearTimeout(timer);
+    }
+    function typeWriter() {
+        if (i < txt.length) {
+            document.getElementById("typing").innerHTML += txt.charAt(i);
+            i++;
+            timer = setTimeout(typeWriter, speed);
         }
     }
 
-    function findNearHero(resultNumArr, HEROS) {
-        var firstMatchedHeros = [];
-        var firstMatchedHerosSecond = []; //비교할 두번째 값
+    typeWriter();
 
-        for (i in HEROS) {
-            if (resultNumArr[0] === HEROS[i][1]) {
-                firstMatchedHeros.push(HEROS[i]);
-                firstMatchedHerosSecond.push(HEROS[i][2]);
+    function PickRandomWord(frm) {
+        // Generate a random number between 1 and NumberOfWords
+        var rnd = Math.ceil(Math.random() * NumberOfWords)
+
+        // Display the word inside the text box
+        frm.WordBox.value = words[rnd]
+    }
+
+    var phraseArray = [
+        "지금부터 당신에게 어울리는 직업을 배정해주지. 아래의 질문에 답을 해서 나에게 제출해주게. ",
+
+        "직업이 걸린 일이니까 잘 생각해서 답을 해달라고. 그럼, 시작하게! ",
+
+        "RPG 직업 소개소에 온걸 환영한다네. 나는 직업 소개소의 장이라네. 똑같은 얘기를 반복하게 하는고만~ ",
+    ];
+
+
+    function randomIndex(arr) {
+        return Math.floor((Math.random() * arr.length));
+    }
+
+    function completeSentence(arr, loc) {
+        document.getElementById('typing').innerHTML = "";
+
+        scriptStop();
+
+        if (clickCount >= 3) {
+            clickCount = 0;
+        }
+
+        var str = arr[clickCount];
+
+        for (let i = 0; i < str.length; i++) {
+            timer = setTimeout(function () {
+                document.getElementById(loc).innerHTML = str.substr(0, i);
+            }, 500 + i * 60);
+        }
+        clickCount++;
+    }
+</script>
+<script>
+    $('.label').on('click', function () {
+        $(this).prev().prop("checked", true);
+        var nextQuestion = $(this).parent().parent().parent().parent().parent().next().next().next().next(); //item
+        var windowHeight = $(window).height();
+        var nextQuestionOffset = nextQuestion.offset();
+
+        $("html, body").animate({
+            scrollTop: nextQuestionOffset.top - windowHeight / 3
+        }, 500);
+    })
+
+    $('input').on('click', function () {
+        $(this).prev().prop("checked", true);
+        var nextQuestion = $(this).parent().parent().parent().parent().parent().next().next().next().next(); //item
+        var windowHeight = $(window).height();
+        var nextQuestionOffset = nextQuestion.offset();
+
+        $("html, body").animate({
+            scrollTop: nextQuestionOffset.top - windowHeight / 3
+        }, 500);
+    })
+
+
+    $('#find').on('click', function () {
+        var coordinates = getCoordinates()
+
+        var emptyQuestionIndex = coordinates.indexOf(undefined);
+
+        if (emptyQuestionIndex !== -1) {
+            // 빈 문제 경고메시지
+            makeErrorMeasage(emptyQuestionIndex)
+            moveToEmptyQuestion(emptyQuestionIndex);
+        } else {
+            var coordinatesX = coordinates.slice(0, 5);
+            var coordinatesY = coordinates.slice(5, 10);
+            var resultCoords = sumXY(coordinatesX, coordinatesY);
+
+            console.log(coordinatesX);
+            console.log(coordinatesY);
+            console.log('결과 : ' + resultCoords);
+
+            result = findClosestRPGClass(resultCoords);
+
+            console.log('찾은 것 : ' + result);
+
+            alert('호엥~~ 자네의 직업은 ' + result[2] + '(이)라네!');
+        }
+    });
+
+    function getCoordinates() {
+        var coordinates = [];
+
+        for (i = 1; i < 11; i++) {
+            coordinates.push($('input[name="' + i + '"]:checked').val());
+        }
+
+        return coordinates;
+    }
+
+
+    function sumXY(coordsX, coordsY) {
+        var result = [];
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        coordsXNum = coordsX.map(x => Number(x));
+        coordsYNum = coordsY.map(x => Number(x));
+
+        var x = coordsXNum.reduce(reducer);
+        var y = coordsYNum.reduce(reducer);
+
+        result.push(x);
+        result.push(y);
+
+        return result;
+    }
+
+    function findClosestRPGClass(goal) {
+        counts = RPGCLASS;
+
+        let closest = counts[0];
+        let prevDiff = Math.abs(closest[0] - goal[0]) + Math.abs(closest[1] - goal[1]);
+        counts.forEach(c => {
+            let curDiff = Math.abs(c[0] - goal[0]) + Math.abs(c[1] - goal[1]);
+            if (curDiff < prevDiff) {
+                closest = c;
+                prevDiff = curDiff;
             }
-        }
+        });
 
-        console.log('첫째자리가 같은 영웅 : ' + firstMatchedHeros);
-        console.log('첫째자리가 같은 영웅의 둘째자리 : ' + firstMatchedHerosSecond);
+        return closest;
+    }
 
-        if(firstMatchedHeros.length === 1){
-            return firstMatchedHeros[0][0];
-        }
 
-        var near = 0; //제일 가까운 수가 담길 변수
-        var target = resultNumArr[1];
-        var abs = 0;
-        var min = Math.max.apply(null, firstMatchedHerosSecond); //해당 범위에서 가장 큰 값
-        console.log('최댓값 :' + min);
-        console.log('근사값을 찾는 숫자: ' + target);
+    function moveToEmptyQuestion(emptyQuestionIndex) {
+        //JQuery
+        var emptyQuestion = $('#question' + (emptyQuestionIndex + 1).toString());
+        var windowHeight = $(window).height();
+        var questionOffset = emptyQuestion.offset();
 
-        for (var i = 0; i < firstMatchedHerosSecond.length; i++) {
-            abs = ((firstMatchedHerosSecond[i] - target) < 0) ? - ((firstMatchedHerosSecond[i]) - target) : (firstMatchedHerosSecond[i] - target);
-            if (abs < min) {
-                min = abs;
-                near = firstMatchedHerosSecond[i];
-            }
-        }
+        return $("html, body").animate({
+            scrollTop: questionOffset.top - windowHeight / 5
+        }, 500);
+    }
 
-        console.log('제일 가까운 값 : ' + near);
+    function makeErrorMeasage(emptyQuestionIndex) {
+        var warningMessageWrapper = document.createElement('div');
+        warningMessageWrapper.classList.add('warning-wrapper');
+        var warningMesaage = document.createElement('div');
+        warningMesaage.classList.add('warning-speach-bubble');
 
-        for (i in firstMatchedHeros) {
-            if (firstMatchedHeros[i][2] === near) {
-                return firstMatchedHeros[i][0];
-            }
-        }
+        var p1 = document.createElement('p');
+        var p2 = document.createElement('p');
+        p1.innerHTML = '이런, 이 질문에 답을 안 했구먼.'
+        p2.innerHTML = '다시 한번 봐주겠나?'
+
+        warningMesaage.appendChild(p1);
+        warningMesaage.appendChild(p2);
+
+        warningMessageWrapper.appendChild(warningMesaage);
+
+        var emptyQuestion = document.getElementById('question' + (emptyQuestionIndex + 1).toString());
+
+        console.log('question' + (emptyQuestionIndex + 1).toString());
+
+        return emptyQuestion.parentNode.appendChild(warningMessageWrapper);
     }
 </script>
 
