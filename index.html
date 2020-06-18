@@ -128,6 +128,85 @@
     animation:bounce 0.5s ease-in Infinite Alternate;
 }
 
+
+/* radio input*/
+
+
+@keyframes click-wave {
+    0% {
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+    }
+    100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+    }
+  }
+  
+  .option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+  }
+  .option-input:hover {
+    background: #9faab7;
+  }
+  .option-input:checked {
+    background: #40e0d0;
+  }
+  .option-input:checked::before {
+    height: 40px;
+    width: 2rem;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: larger;
+    text-align: center;
+    line-height: 2rem;
+  }
+  .option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #40e0d0;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+  .option-input.radio {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+  }
+  .option-input.radio::after {
+    border-radius: 50%;
+  }
+
 /* animation */
 
 .ears{
@@ -190,7 +269,6 @@
         display: none;
     }
 }
-
 </style>
 <body>
     <div class="navbar"></div>
@@ -306,32 +384,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="-10">
-                                    <label class="label" style="cursor: pointer;">매우 그렇다.</label>
+                                <div>
+                                    <input type="radio" name="1" value="-10" class="option-input radio">
+                                    <label class="label" style="cursor: pointer;" >매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="-5">
+                                <div>
+                                    <input type="radio" name="1" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="0">
+                                <div>
+                                    <input type="radio" name="1" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="5">
+                                <div>
+                                    <input type="radio" name="1" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="1" value="10">
+                                <div>
+                                    <input type="radio" name="1" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -349,35 +427,35 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="-10">
+                                <div>
+                                    <input type="radio" name="2" value="-10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="-5">
+                                <div>
+                                    <input type="radio" name="2" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="0">
+                                <div>
+                                    <input type="radio" name="2" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="5">
+                                <div>
+                                    <input type="radio" name="2" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="2" value="10">
+                                <div>
+                                    <input type="radio" name="2" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -392,32 +470,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="10">
+                                <div>
+                                    <input type="radio" name="3" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="5">
+                                <div>
+                                    <input type="radio" name="3" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="0">
+                                <div>
+                                    <input type="radio" name="3" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="-5">
+                                <div>
+                                    <input type="radio" name="3" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="3" value="-10">
+                                <div>
+                                    <input type="radio" name="3" value="-10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -435,32 +513,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="-10">
+                                <div>
+                                    <input type="radio" name="4" value="-10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="-5">
+                                <div>
+                                    <input type="radio" name="4" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="0">
+                                <div>
+                                    <input type="radio" name="4" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="5">
+                                <div>
+                                    <input type="radio" name="4" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="4" value="10">
+                                <div>
+                                    <input type="radio" name="4" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -478,32 +556,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="10">
+                                <div>
+                                    <input type="radio" name="5" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="5">
+                                <div>
+                                    <input type="radio" name="5" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="0">
+                                <div>
+                                    <input type="radio" name="5" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="-5">
+                                <div>
+                                    <input type="radio" name="5" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="5" value="-10">
+                                <div>
+                                    <input type="radio" name="5" value="-10"  class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -521,32 +599,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="10">
+                                <div>
+                                    <input type="radio" name="6" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="5">
+                            <div>
+                                <div>
+                                    <input type="radio" name="6" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="0">
+                            <div>
+                                <div>
+                                    <input type="radio" name="6" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="-5">
+                            <div>
+                                <div>
+                                    <input type="radio" name="6" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="6" value="-10">
+                            <div>
+                                <div>
+                                    <input type="radio" name="6" value="-10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -564,32 +642,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="10">
+                                <div>
+                                    <input type="radio" name="7" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="5">
+                                <div>
+                                    <input type="radio" name="7" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="0">
+                                <div>
+                                    <input type="radio" name="7" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="-5">
+                                <div>
+                                    <input type="radio" name="7" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="7" value="-10">
+                                <div>
+                                    <input type="radio" name="7" value="-10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -607,32 +685,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="-9">
+                                <div>
+                                    <input type="radio" name="8" value="-9" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="-4">
+                                <div>
+                                    <input type="radio" name="8" value="-4" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="0">
+                                <div>
+                                    <input type="radio" name="8" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="4">
+                                <div>
+                                    <input type="radio" name="8" value="4" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="8" value="9">
+                                <div>
+                                    <input type="radio" name="8" value="9" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -650,32 +728,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="-10">
+                                <div>
+                                    <input type="radio" name="9" value="-10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="-5">
+                                <div>
+                                    <input type="radio" name="9" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="0">
+                                <div>
+                                    <input type="radio" name="9" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="5">
+                                <div>
+                                    <input type="radio" name="9" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="9" value="10">
+                                <div>
+                                    <input type="radio" name="9" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
@@ -693,32 +771,32 @@
                         <div class="ui hidden divider"></div>
                         <div class="ui form">
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="10">
+                                <div>
+                                    <input type="radio" name="10" value="10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="5">
+                                <div>
+                                    <input type="radio" name="10" value="5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="0">
+                                <div>
+                                    <input type="radio" name="10" value="0" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">모르겠다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="-5">
+                                <div>
+                                    <input type="radio" name="10" value="-5" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">그렇지 않다.</label>
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="10" value="-10">
+                                <div>
+                                    <input type="radio" name="10" value="-10" class="option-input radio">
                                     <label class="label" style="cursor: pointer;">매우 그렇지 않다.</label>
                                 </div>
                             </div>
